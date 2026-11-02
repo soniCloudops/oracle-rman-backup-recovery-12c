@@ -1,0 +1,15 @@
+# Scenario 1B: Level 1 Differential Incremental Backup
+
+RUN {
+    ALLOCATE CHANNEL ch1 DEVICE TYPE DISK;
+    ALLOCATE CHANNEL ch2 DEVICE TYPE DISK;
+
+    BACKUP INCREMENTAL LEVEL 1
+        AS COMPRESSED BACKUPSET
+        DATABASE
+        FORMAT '/backup/rman/L1_DIFF_%d_%T_%U'
+        TAG 'LEVEL1_DIFFERENTIAL';
+
+    RELEASE CHANNEL ch1;
+    RELEASE CHANNEL ch2;
+}

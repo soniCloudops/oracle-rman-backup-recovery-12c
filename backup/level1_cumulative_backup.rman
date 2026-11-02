@@ -1,0 +1,15 @@
+# Scenario 1C: Level 1 Cumulative Incremental Backup
+
+RUN {
+    ALLOCATE CHANNEL ch1 DEVICE TYPE DISK;
+    ALLOCATE CHANNEL ch2 DEVICE TYPE DISK;
+
+    BACKUP INCREMENTAL LEVEL 1 CUMULATIVE
+        AS COMPRESSED BACKUPSET
+        DATABASE
+        FORMAT '/backup/rman/L1_CUM_%d_%T_%U'
+        TAG 'LEVEL1_CUMULATIVE';
+
+    RELEASE CHANNEL ch1;
+    RELEASE CHANNEL ch2;
+}

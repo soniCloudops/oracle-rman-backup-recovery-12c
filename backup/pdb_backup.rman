@@ -1,0 +1,16 @@
+# Scenario 1D: Pluggable Database Backup
+# Connect RMAN to the CDB root.
+# Replace PDB_NAME with the actual PDB name.
+
+RUN {
+    ALLOCATE CHANNEL ch1 DEVICE TYPE DISK;
+    ALLOCATE CHANNEL ch2 DEVICE TYPE DISK;
+
+    BACKUP AS COMPRESSED BACKUPSET
+        PLUGGABLE DATABASE PDB_NAME
+        FORMAT '/backup/rman/PDB_%d_%T_%U'
+        TAG 'PDB_BACKUP';
+
+    RELEASE CHANNEL ch1;
+    RELEASE CHANNEL ch2;
+}

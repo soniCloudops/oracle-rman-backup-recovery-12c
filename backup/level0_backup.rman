@@ -1,0 +1,15 @@
+# Scenario 1A: Level 0 Incremental Database Backup
+
+RUN {
+    ALLOCATE CHANNEL ch1 DEVICE TYPE DISK;
+    ALLOCATE CHANNEL ch2 DEVICE TYPE DISK;
+
+    BACKUP INCREMENTAL LEVEL 0
+        AS COMPRESSED BACKUPSET
+        DATABASE
+        FORMAT '/backup/rman/L0_%d_%T_%U'
+        TAG 'LEVEL0_WEEKLY';
+
+    RELEASE CHANNEL ch1;
+    RELEASE CHANNEL ch2;
+}
