@@ -1,0 +1,13 @@
+# Scenario 4A: SPFILE Recovery
+# Replace the DBID with your actual database DBID.
+
+SET DBID 1234567890;
+
+# Start the instance in NOMOUNT using a temporary PFILE.
+# Restore the SPFILE from the autobackup.
+
+RESTORE SPFILE FROM AUTOBACKUP;
+
+SHUTDOWN IMMEDIATE;
+
+STARTUP NOMOUNT;
