@@ -1,0 +1,16 @@
+# Scenario 5: Point-in-Time Recovery
+# Example: Recover database to a specific timestamp.
+
+SHUTDOWN IMMEDIATE;
+STARTUP MOUNT;
+
+RUN {
+    SET UNTIL TIME
+        "TO_DATE('2026-11-02 14:30:00',
+                 'YYYY-MM-DD HH24:MI:SS')";
+
+    RESTORE DATABASE;
+    RECOVER DATABASE;
+}
+
+SQL 'ALTER DATABASE OPEN RESETLOGS';
